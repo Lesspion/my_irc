@@ -43,3 +43,5 @@ sftp-config.json
 ### Less ###
 *.css
 
+# node module
+node_modules
