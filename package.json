@@ -1,0 +1,25 @@
+{
+  "name": "my_irc",
+  "version": "1.0.0",
+  "description": "A little tchat client-server",
+  "main": "server.js",
+  "scripts": {
+    "test": "node server.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lesspion/my_irc.git"
+  },
+  "keywords": [
+    "tchat",
+    "irc",
+    "multi-channel"
+  ],
+  "author": "lesspion/coquel_d",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lesspion/my_irc/issues"
+  },
+  "homepage": "https://github.com/Lesspion/my_irc#readme"
+}
