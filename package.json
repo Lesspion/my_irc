@@ -24,10 +24,17 @@
   "homepage": "https://github.com/Lesspion/my_irc#readme",
   "dependencies": {
     "body-parser": "^1.14.2",
+    "ent": "^2.2.0",
     "express": "^4.13.3",
     "express-session": "^1.12.1",
     "mongoose": "^4.3.4",
     "socket.io": "^1.3.7",
     "swig": "^1.4.2"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-nodemon": "^0.4.1",
+    "grunt-reload": "^0.2.0"
   }
 }
