@@ -2,35 +2,48 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-reload');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-nodemon');
+    grunt.loadNpmTasks('grunt-contrib-connect');
+    grunt.loadNpmTasks('grunt-concurrent');
     
     grunt.initConfig({
-        concurrent: {
-            dev: ["less:dev", "nodemon", "watch"],
-            options: {
-                logConcurrentOutput: true
-            }
-        },
-        reload: {
-            port: 1664,
-            proxy: {
-                host: 'localhost'
-            }
-        },
         nodemon: {
             dev: {
-                script: '**/*.js'
+                script: 'server.js'
             }
         },
         watch: {
-            files: ['views/index.html', "**/*.css"],
-            tasks: '',
-            options: {
-                livereload: true
-            }
+        dev: {
+          options: {
+            livereload: true
+          },
+          files: '**/*.*'
         }
-        
+      },
+      connect: {
+        dev: {
+          options: {
+            port: 8083,
+            base: {
+                path: '.',
+                options: {
+                    index: 'views/index.html',
+                    maxArge: 300000
+                }
+            },
+            keepalive: true,
+            hostname: '127.0.0.1',
+            livereload: true
+          }
+        }
+
+      },
+      concurrent: {
+        dev: ['connect:dev', 'watch:dev'] // connect and watch running concurrently!
+      }
     });
+    
     grunt.registerTask('default', ['nodemon']);
     grunt.registerTask('launch', ['nodemon']);
-    grunt.registerTask('reload', ['reload', 'watch']);
+    grunt.registerTask('reload', ['concurrent']);
+    
 }
