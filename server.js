@@ -1,23 +1,15 @@
-var http = require('http'),
-    socket_io = require('socket.io'),
+var express = require('express'),
+    app = express(),
+    server = require('http').createServer(app),
+    io = require('socket.io').listen(server),
     ent = require('ent'),
     fs = require('fs');
 
-var server = http.createServer(function (req, res) {
-    fs.readFile(__dirname + '/views/index.html', function(error, content) {
-		if (error) {
-			res.writeHead(500);
-			res.end();
-		}
-		else {
-			res.writeHead(200, { 'Content-Type': 'text/html' });
-			res.end(content, 'utf-8');
-		}
-	});
-});
+app.use('/assets', express.static('assets'));
 
-server.listen(1664);
-var io = socket_io.listen(server);
+app.get('/', function (req, res) {
+    res.sendfile(__dirname + '/views/index.html');
+});
 
 io.sockets.on('connection', function (socket, pseudo) {
 
@@ -41,4 +33,5 @@ io.sockets.on('connection', function (socket, pseudo) {
     
 });
 
+server.listen(1664);
 console.log('magic happens on port : ' + 1664);
