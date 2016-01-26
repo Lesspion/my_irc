@@ -26,7 +26,7 @@ module.exports = function (grunt) {
             base: {
                 path: '.',
                 options: {
-                    index: 'views/index.html',
+                    index: 'views/index3.html',
                     maxArge: 300000
                 }
             },
