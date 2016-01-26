@@ -60,8 +60,8 @@ io.sockets.on('connection', function (socket) {
          io.sockets.in(objectMsg.room).emit('listen_me', objectMsg);
     });
     
-    socket.on('say_my_name', function () { // change nickname
-        
+    socket.on('say_my_name', function (newNickname) { // change nickname
+        socket.nickname = newNickname;
     });
 });
 
