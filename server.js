@@ -1,35 +1,54 @@
+// PROTOTYPE ZONE
+Array.prototype.remove = function(from, to) {
+    var rest = this.slice((to || from) + 1 || this.length);
+    this.length = from < 0 ? this.length + from : from;
+    return this.push.apply(this, rest);
+};
+// END PROTOTYPE ZONE
+
 var express = require('express'),
     app = express(),
     server = require('http').createServer(app),
     io = require('socket.io').listen(server),
     ent = require('ent'),
-    fs = require('fs');
+    fs = require('fs'),
+    Generate = require('./my_modules/generate'),
+    Channel = require('./my_modules/channel');
 
 app.use('/assets', express.static('assets'));
 
 app.get('/', function (req, res) {
-    res.sendfile(__dirname + '/views/index2.html');
+    res.sendfile(__dirname + '/views/index3.html');
 });
 
-io.sockets.on('connection', function (socket, pseudo) {
+var channels = {};
+var users = {};
+var channelsList = [];
 
-    socket.on('nouveau_client', function(pseudo) {
+io.sockets.on('connection', function (socket) {
 
-        pseudo = ent.encode(pseudo);
-
-        socket.pseudo = pseudo;
-
-        socket.broadcast.emit('nouveau_client', pseudo);
-
+    socket.nickname = Generate.anonymousUser();
+    users[socket.nickname] = socket.nickname;
+    channels[socket.nickname] = [];
+    console.log('his nickname is : ' + socket.nickname);
+    
+    socket.on('join_channel', function (channelName) {
+        if (!Channel.checkIfAlreadyJoin(channels, socket.nickname, channelName)) {
+            channels[socket.nickname].push(channelName);
+            socket.join(channelName);
+        } else {
+            // change current channel
+        }
     });
-
-    socket.on('message', function (message) {
-
-        message = ent.encode(message);
-
-        socket.broadcast.emit('message', {pseudo: socket.pseudo, message: message});
-
+    
+    socket.on('leave_channel', function (channelName) {
+        socket.leave(channelName);
+        var index = channels[socket.nickname].indexOf(channelName);
+        if (index !== -1) {
+            channels[socket.nickname].remove(index);
+        }
     });
+    
     
 });
 
