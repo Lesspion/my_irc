@@ -32,7 +32,7 @@ io.sockets.on('connection', function (socket) {
     channels[socket.nickname] = [];
     console.log('his nickname is : ' + socket.nickname);
     
-    socket.on('join_channel', function (channelName) {
+    socket.on('join_the_dark_side', function (channelName) { //join a room
         if (!Channel.checkIfAlreadyJoin(channels, socket.nickname, channelName)) {
             channels[socket.nickname].push(channelName);
             socket.join(channelName);
@@ -41,7 +41,7 @@ io.sockets.on('connection', function (socket) {
         }
     });
     
-    socket.on('leave_channel', function (channelName) {
+    socket.on('justin_leave_r', function (channelName) { // leave a room
         socket.leave(channelName);
         var index = channels[socket.nickname].indexOf(channelName);
         if (index !== -1) {
@@ -49,7 +49,13 @@ io.sockets.on('connection', function (socket) {
         }
     });
     
+    socket.on('message_is_coming', function () { // new message
+        
+    });
     
+    socket.on('say_my_name', function () { // change nickname
+        
+    });
 });
 
 server.listen(1664);
