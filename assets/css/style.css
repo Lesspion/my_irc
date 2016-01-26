@@ -1,0 +1,173 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+html {
+    height: 100%;
+}
+body {
+	line-height: 1;
+    outline: 0px;
+    width: 100%;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* end eric meyer rest */
+#banniere {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    background: white url('../images/background3.jpg') no-repeat center center;
+    height: 66px;
+}
+
+.header-font {
+    font-family: 'Abril Fatface', cursive;
+    font-style: oblique;
+    font-size: 2em;
+    color: #335555;
+}
+
+#banniere h1 {
+    padding-top: 20px;
+}
+
+.room-list {
+    margin-top: 10px;
+    width: 20%;
+    max-width: 225px;
+    display: block;
+    border-left-width: 0px;
+    border-top-width: 0px;
+    border-bottom-width: 0px;
+    border-right-width: 2px;
+    border-style: solid;
+    float: left;
+    border-color: #454586;
+    font-family: 'Josefin Slab', cursive;
+    position: relative;
+    min-height: 50em;
+}
+
+.room-name {
+    margin-top: 10px;
+    margin-left: 3px;
+    font-size: 1.5em;
+    font-style: oblique;
+    color: olivedrab;
+    text-align: center;
+    overflow: auto;
+    text-overflow: ellipsis;
+}
+
+.message-list {
+    margin-left: 43px;
+    float: left;
+    margin-top: 20px;
+}
+
+.message {
+    border-style: groove;
+    display: inline-block;
+    width: 50%;
+    border-width: 4px;
+    margin-top: 10px;
+}
+
+.the-message {
+    margin-top: 5px;
+    padding-left: 5px
+}
+
+.me {
+    float: right;
+    background-color: forestgreen;
+    border-radius: 10px;
+}
+
+.people {
+    padding-bottom: 5px;
+}
+
+.not-me {
+    float: left;
+    background-color: grey;
+    border-radius: 10px;
+}
+
+.me-text {
+    color: red;
+    padding-left: 5px;
+}
+
+.not-me-text {
+    padding-left: 5px;
+    color: blue;
+}
+
+.tchat-command {
+    border-width: 2px;
+    width: 70%;
+    float: left;
+    position: absolute;
+    bottom: 30px;
+    left: 14%;
+}
+
+.tchat-box {
+    width: 80%;
+    display: inline-block;
+}
+
+.submit {
+    background: #FFF url("../images/send12.png") no-repeat scroll center center;
+    width: 50px;
+    border-radius: 25px;
+    height: 50px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#to-submit {
+    
+}
