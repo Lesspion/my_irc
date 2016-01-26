@@ -8,7 +8,7 @@ var express = require('express'),
 app.use('/assets', express.static('assets'));
 
 app.get('/', function (req, res) {
-    res.sendfile(__dirname + '/views/index.html');
+    res.sendfile(__dirname + '/views/index2.html');
 });
 
 io.sockets.on('connection', function (socket, pseudo) {
