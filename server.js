@@ -49,8 +49,15 @@ io.sockets.on('connection', function (socket) {
         }
     });
     
-    socket.on('message_is_coming', function () { // new message
-        
+    /*
+        {
+            message: "My message",
+            user: "HisNickname",
+            room: "roomName"
+        }
+    */
+    socket.on('message_is_coming', function (objectMsg) { // new message
+         io.sockets.in(objectMsg.room).emit('listen_me', objectMsg);
     });
     
     socket.on('say_my_name', function () { // change nickname
