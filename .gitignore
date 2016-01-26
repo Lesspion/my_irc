@@ -39,9 +39,5 @@ bower_components
 # sftp configuration file
 sftp-config.json
 
-
-### Less ###
-*.css
-
 # node module
 node_modules
