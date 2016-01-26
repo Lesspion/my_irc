@@ -8,5 +8,14 @@
 
 .my-send {
     margin-left: 105%;
-    margin-top: -22%;
+    margin-top: -15%;
+}
+
+.scrollable {
+    height: 350%;
+    overflow: scroll;
+}
+
+.my-form {
+    margin-left: 20%;;
 }
