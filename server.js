@@ -31,6 +31,7 @@ io.sockets.on('connection', function (socket) {
     users[socket.nickname] = socket.nickname;
     channels[socket.nickname] = [];
     console.log('his nickname is : ' + socket.nickname);
+    socket.emit('my_name_is', socket.nickname);
     
     socket.on('join_the_dark_side', function (channelName) { //join a room
         if (!Channel.checkIfAlreadyJoin(channels, socket.nickname, channelName)) {
