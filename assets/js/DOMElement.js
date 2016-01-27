@@ -1,5 +1,7 @@
 (function () {
+    
     var DOMElement = {};
+    
     DOMElement.prototype.newMessage = function (messageContent, nickname, me) {
         var s = !me ? 's6' : 'offset-s6';
         var isItMe = !me ? 'not-me' : 'me'
@@ -12,7 +14,9 @@
                    '</div>' +
                '</div>';
     };
+    
     DOMElement.prototype.newChannel = function (channelName) {
         return '<div class="card-panel hoverable center-align" data-channelName=' + channelName + '>' + channelName + '</div>';
     };
+    
 }).call(this);
