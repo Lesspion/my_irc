@@ -18,7 +18,7 @@ var express = require('express'),
 app.use('/assets', express.static('assets'));
 
 app.get('/', function (req, res) {
-    res.sendfile(__dirname + '/views/index3.html');
+    res.sendFile(__dirname + '/views/index3.html');
 });
 
 var channels = {};
@@ -32,6 +32,8 @@ io.sockets.on('connection', function (socket) {
     channels[socket.nickname] = [];
     console.log('his nickname is : ' + socket.nickname);
     socket.emit('my_name_is', socket.nickname);
+    socket.join('room1');
+    channels[socket.nickname] = 'room1';
     
     socket.on('join_the_dark_side', function (channelName) { //join a room
         if (!Channel.checkIfAlreadyJoin(channels, socket.nickname, channelName)) {
@@ -58,6 +60,7 @@ io.sockets.on('connection', function (socket) {
         }
     */
     socket.on('message_is_coming', function (objectMsg) { // new message
+        console.log('i listen you : ', objectMsg);
          io.sockets.in(objectMsg.room).emit('listen_me', objectMsg);
     });
     
