@@ -1,5 +1,6 @@
 (function () {
-    DOM = {};
+    
+    var DOM = {};
     
     DOM.prototype.addMessage = function(DOMMessage) {
         document.querySelector('.scrollable').appendChild(DOMMessage); // TO-TEST
@@ -9,8 +10,9 @@
         document.querySelector('.fixed').appendChild(DOMChannel);
     };
     
-    DOM.prototype.removeChannel = function () {
-        
+    DOM.prototype.removeChannel = function (channelName) {
+        var channelToRemove = document.querySelector('*[data-channelName=' + channelName + ']');
+        channelToRemove.parentChild.remove(channelToRemove);
     };
     
 }).call(this);
