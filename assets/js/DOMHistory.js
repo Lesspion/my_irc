@@ -16,4 +16,6 @@
         }
     };
     
+    window.DOMHistory = DOMHistory;
+    
 }).call(this);
