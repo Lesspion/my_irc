@@ -5,6 +5,10 @@ socket.on('my_name_is', function (name) {
     user.setNickname(name);
 });
 
+socket.on('listen_me', function (msgObject) {
+    // condition if it's me or not
+});
+
 
 // DOM party !!!!!!!!
 document.addEventListener('DOMContentLoaded', function () {
