@@ -12,6 +12,7 @@ socket.on('listen_me', function (msgObject) {
 
 // DOM party !!!!!!!!
 document.addEventListener('DOMContentLoaded', function () {
+    user.init(socket);
     var send = document.querySelector('.my-send');
     var input = document.querySelector('#my-msg');
     
@@ -23,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
         var key = e.keyCode || e.which;
         if (key === 13) {
             // enter ok;
-            user.send()
+            user.send();
         }
     });
 });
