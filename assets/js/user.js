@@ -44,6 +44,9 @@
             obj.message = document.querySelector('#my-msg').value;
             this.socket.emit('message_is_coming', obj);
             this.emptyInput();
+        },
+        switchChannel: function (channelName) {
+            
         }
     };
     
