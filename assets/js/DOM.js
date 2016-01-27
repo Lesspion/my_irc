@@ -2,17 +2,18 @@
     
     var DOM = {};
     
-    DOM.prototype.addMessage = function(DOMMessage) {
-        document.querySelector('.scrollable').appendChild(DOMMessage); // TO-TEST
+    DOM.addMessage = function(DOMMessage) {
+        document.querySelector('.scrollable').innerHTML = document.querySelector('.scrollable').innerHTML + DOMMessage; // TO-TEST
     };
     
-    DOM.prototype.addChannel = function (DOMChannel) {
+    DOM.addChannel = function (DOMChannel) {
         document.querySelector('.fixed').appendChild(DOMChannel);
     };
     
-    DOM.prototype.removeChannel = function (channelName) {
+    DOM.removeChannel = function (channelName) {
         var channelToRemove = document.querySelector('*[data-channelName=' + channelName + ']');
         channelToRemove.parentChild.remove(channelToRemove);
     };
     
+    window.DOM = DOM;
 }).call(this);
