@@ -16,7 +16,7 @@
     };
     
     DOMElement.prototype.newChannel = function (channelName) {
-        return '<div class="card-panel hoverable center-align" data-channelName=' + channelName + '>' + channelName + '</div>';
+        return '<div class="card-panel hoverable center-align" data-channelName="' + channelName + '" onclick="user.switchChannel(' + channelName + ')">' + channelName + '</div>';
     };
     
 }).call(this);
