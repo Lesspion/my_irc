@@ -13,6 +13,6 @@
                '</div>';
     };
     DOMElement.prototype.newChannel = function (channelName) {
-        return '<div class="card-panel hoverable center-align">' + channelName + '</div>';
+        return '<div class="card-panel hoverable center-align" data-channelName=' + channelName + '>' + channelName + '</div>';
     };
 }).call(this);
