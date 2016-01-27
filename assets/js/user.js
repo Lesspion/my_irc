@@ -38,12 +38,15 @@
             }
         },
         send: function () {
-            var obj = {};
-            obj.nickname = this.nickname;
-            obj.room = this.getViewRoom();
-            obj.message = document.querySelector('#my-msg').value;
-            this.socket.emit('message_is_coming', obj);
-            this.emptyInput();
+            if (document.querySelector('#my-msg').value !== "") {
+                var obj = {};
+                obj.nickname = this.nickname;
+                obj.room = this.getViewRoom();
+                obj.message = document.querySelector('#my-msg').value;
+                this.socket.emit('message_is_coming', obj);
+                console.log('obj : ', obj);
+                this.emptyInput();
+            }
         },
         switchChannel: function (channelName) {
             
