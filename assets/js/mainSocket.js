@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     socket.on('listen_me', function (msgObject) {
         // condition if it's me or not
-        var me = msgObject.user === user.nickname ? true : false;
+        var me = msgObject.nickname === user.nickname ? true : false;
         console.log('I have : ', msgObject);
         if (user.getViewRoom() === msgObject.room) {
             DOM.addMessage(DOMElement.newMessage(msgObject.message, msgObject.nickname, me));
@@ -32,6 +32,10 @@ document.addEventListener('DOMContentLoaded', function () {
             // DOMHistory.allMessages[msgObject.room] += DOMElement.newMessage(msgObject.message, msgObject.user, me);
         }
     });
+    
+    socket.on('room_list', function (roomsList) {
+        // afficher room (array)
+    }):
     
     send.addEventListener('click', function (e) {
         user.send();
