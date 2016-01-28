@@ -12,7 +12,7 @@
     
     DOM.removeChannel = function (channelName) {
         var channelToRemove = document.querySelector('*[data-channelName=' + channelName + ']');
-        channelToRemove.parentChild.remove(channelToRemove);
+        channelToRemove.parentNode.remove(channelToRemove);
     };
     
     window.DOM = DOM;
