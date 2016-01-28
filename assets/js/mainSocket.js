@@ -14,14 +14,12 @@ document.addEventListener('DOMContentLoaded', function () {
     
     // socket party !!!!!
     var socket = io.connect('http://localhost:1664');
-    
+    window.socket = socket;
     user.init(socket);
-    Command.init(socket);
+    Command.init(socket, user);
     
     socket.on('my_name_is', function (name) {
         user.setNickname(name);
-        user.setViewRoom('room1');
-
     });
 
     socket.on('listen_me', function (msgObject) {
@@ -40,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     
     send.addEventListener('click', function (e) {
-        user.send();
+        Command.search(document.querySelector('#my-msg').value);
         e.preventDefault();
     });
     
@@ -48,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
         var key = e.keyCode || e.which;
         if (key === 13) {
             // enter ok;
-            user.send();
+            Command.search(document.querySelector('#my-msg').value);
             e.preventDefault();
         }
     });
