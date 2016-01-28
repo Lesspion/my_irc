@@ -32,16 +32,14 @@ io.sockets.on('connection', function (socket) {
     channels[socket.nickname] = [];
     console.log('his nickname is : ' + socket.nickname);
     socket.emit('my_name_is', socket.nickname);
-    socket.join('room1');
-    channels[socket.nickname] = 'room1';
     
     socket.on('join_the_dark_side', function (channelName) { //join a room
-        if (!Channel.checkIfAlreadyJoin(channels, socket.nickname, channelName)) {
+        //if (!Channel.checkIfAlreadyJoin(channels, socket.nickname, channelName)) {
             channels[socket.nickname].push(channelName);
             socket.join(channelName);
-        } else {
+        //} else {
             // change current channel
-        }
+        //}
     });
     
     socket.on('justin_leave_r', function (channelName) { // leave a room
@@ -66,6 +64,7 @@ io.sockets.on('connection', function (socket) {
     
     socket.on('say_my_name', function (newNickname) { // change nickname
         socket.nickname = newNickname;
+        console.log(socket.nickname);
     });
     
     socket.on('it_s_over_9000', function () {
