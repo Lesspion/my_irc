@@ -55,7 +55,7 @@ io.sockets.on('connection', function (socket) {
     /*
         {
             message: "My message",
-            user: "HisNickname",
+            nickname: "HisNickname",
             room: "roomName"
         }
     */
@@ -66,6 +66,10 @@ io.sockets.on('connection', function (socket) {
     
     socket.on('say_my_name', function (newNickname) { // change nickname
         socket.nickname = newNickname;
+    });
+    
+    socket.on('it_s_over_9000', function () {
+        socket.emit('room_list', channelsList);
     });
 });
 
