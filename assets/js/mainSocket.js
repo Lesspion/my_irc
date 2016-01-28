@@ -1,3 +1,4 @@
+/* global Command */
 /* global io */
 /* global DOMHistory */
 /* global user */
@@ -15,6 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var socket = io.connect('http://localhost:1664');
     
     user.init(socket);
+    Command.init(socket);
     
     socket.on('my_name_is', function (name) {
         user.setNickname(name);
@@ -35,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
     socket.on('room_list', function (roomsList) {
         // afficher room (array)
-    }):
+    });
     
     send.addEventListener('click', function (e) {
         user.send();
