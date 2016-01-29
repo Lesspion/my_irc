@@ -29,7 +29,16 @@ document.addEventListener('DOMContentLoaded', function () {
         if (user.getViewRoom() === msgObject.room) {
             DOM.addMessage(DOMElement.newMessage(msgObject.message, msgObject.nickname, me));
         } else {
-            // DOMHistory.allMessages[msgObject.room] += DOMElement.newMessage(msgObject.message, msgObject.user, me);
+            if (typeof DOMHistory.allMessages[msgObject.room] === 'undefined') {
+                DOMHistory.allMessages[msgObject.room] = [];
+            } else if (typeof DOMHistory.allMessages[msgObject.room].push === "undefined") {
+                DOMHistory.allMessages[msgObject.room] = [].slice.call(DOMHistory.allMessages[msgObject.room]);
+            }
+            var msg = DOMElement.newMessage(msgObject.message, msgObject.nickname, me, msgObject.room);
+            if (typeof msg === "string") {
+                msg = $(msg).get(0);
+            }
+            DOMHistory.allMessages[msgObject.room].push(msg);
         }
     });
     
@@ -37,6 +46,10 @@ document.addEventListener('DOMContentLoaded', function () {
         // afficher room (array)
         console.log('herre');
         alert(roomsList.join(' '));
+    });
+    
+    socket.on('we_are', function (listUsers) {
+        alert(listUsers.join(' '));
     });
     
     send.addEventListener('click', function (e) {

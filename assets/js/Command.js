@@ -31,18 +31,19 @@
    Command.joinAction = function () {
        socket.emit('join_the_dark_side', Command.matches[1]);
        // (switch de vue);
-       DOMHistory.setMessages(user.getViewRoom(), document.querySelector('.scrollable'));
+       DOMHistory.setMessages(user.getViewRoom(), [].slice.call(document.querySelectorAll('*[data-room="' + user.getViewRoom() + '"]')));
        user.setViewRoom(Command.matches[1]);
        user.allRoom.push(Command.matches[1]);
        if (DOMHistory.allMessages[Command.matches[1]]) {
            console.log('JE suis la : ');
-           console.log(DOMHistory.allMessages[Command.matches[1]]);
-           var scrollable = document.querySelector('.scrollable');
-           var parent = scrollable.parentNode;
-           //scrollable.parentNode.removeChild(scrollable);
-           parent.insertBefore(DOMHistory.getMessages(Command.matches[1]), parent.firstChild);
-           //scrollable.parentNode.replaceChild(scrollable, DOMHistory.getMessages(Command.matches[1]));
-           scrollable.innerHTML = "";
+           document.querySelector('.scrollable').innerHTML = "";
+           for (var i = 0; i < DOMHistory.getMessages(Command.matches[1]).length; i++) {
+               console.log('type : ', typeof DOMHistory.getMessages(Command.matches[1])[i]);
+               console.log('val : ', DOMHistory.getMessages(Command.matches[1])[i])
+               document.querySelector('.scrollable').appendChild(DOMHistory.getMessages(Command.matches[1])[i]);
+           }
+       } else {
+           document.querySelector('.scrollable').innerHTML = "";
        }
    };
    
@@ -59,7 +60,7 @@
    };
    
    Command.userAction = function () {
-       
+       socket.emit('how_many');
    };
    
    Command.messageAction = function () {
@@ -78,7 +79,7 @@
            'me'    : that.meAction,
            'nick'  : that.nickAction,
            'part'  : that.leaveAction,
-           'user' : that.userAction,
+           'users' : that.userAction,
            'msg'   : that.messageAction,
            'help'  : that.helpAction
        };

@@ -22,7 +22,7 @@ app.get('/', function (req, res) {
 });
 
 var channels = {};
-var users = {};
+var users = {}; //stock socket.id en clé
 var channelsList = [];
 
 io.sockets.on('connection', function (socket) {
@@ -37,6 +37,7 @@ io.sockets.on('connection', function (socket) {
         //if (!Channel.checkIfAlreadyJoin(channels, socket.nickname, channelName)) {
             channels[socket.nickname].push(channelName);
             socket.join(channelName);
+            socket.curRoom = channelName;
         //} else {
             // change current channel
         //}
@@ -70,6 +71,22 @@ io.sockets.on('connection', function (socket) {
     socket.on('it_s_over_9000', function () {
         socket.emit('room_list', channels[socket.nickname]);
         console.log('arg');
+    });
+    
+    socket.on('how_many', function () {
+        var cur = socket.curRoom;
+        var u = [];
+        console.log(channels);
+        for (var user in channels) {
+            for (var i = 0; i < channels[user].length; i++) {
+                if (channels[user][i] === cur) {
+                    console.log('boulou : ', channels[user][i]);
+                    u.push(user);
+                }
+            }
+        }
+        socket.emit('we_are', u);
+        console.log('users : ', u);
     });
     
     // socket pour /users && function parse channels poiur recup user
