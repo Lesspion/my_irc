@@ -55,6 +55,7 @@
    };
    
    Command.leaveAction = function () {
+       user.setViewRoom("");
        socket.emit('justin_leave_r', user.getViewRoom());
    };
    
@@ -64,6 +65,7 @@
    
    Command.messageAction = function () {
        // TO-THINK
+       socket.emit('this_is_private', Command.matches[1], Command.matches[2], user.nickname);
    };
    
    Command.helpAction = function () {

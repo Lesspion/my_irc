@@ -22,13 +22,13 @@ app.get('/', function (req, res) {
 });
 
 var channels = {};
-var users = {}; //stock socket.id en clé
+var users = {}; //stock socket.id en value
 var channelsList = [];
 
 io.sockets.on('connection', function (socket) {
 
     socket.nickname = Generate.anonymousUser();
-    users[socket.nickname] = socket.nickname;
+    users[socket.nickname] = socket.id;
     channels[socket.nickname] = [];
     console.log('his nickname is : ' + socket.nickname);
     socket.emit('my_name_is', socket.nickname);
@@ -59,7 +59,9 @@ io.sockets.on('connection', function (socket) {
     });
     
     socket.on('say_my_name', function (newNickname) { // change nickname
+        delete users[socket.nickname];
         socket.nickname = newNickname;
+        users[socket.nickname] = socket.id
         console.log(socket.nickname);
     });
     
@@ -80,7 +82,13 @@ io.sockets.on('connection', function (socket) {
         socket.emit('we_are', u);
     });
     
-    // socket pour /users && function parse channels poiur recup user
+    socket.on('this_is_private', function (name, content, from) {
+        if (users[name]) {
+            io.to(users[name]).emit('private_message', content, from);
+            console.log(from, content, name);
+        }
+    })
+    
 });
 
 server.listen(1664);

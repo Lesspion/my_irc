@@ -46,6 +46,10 @@ document.addEventListener('DOMContentLoaded', function () {
         alert(listUsers.join(' '));
     });
     
+    socket.on('private_message', function (content, from) {
+        alert('Message de : ' + from + ' : ' + content);
+    });
+    
     send.addEventListener('click', function (e) {
         Command.search(document.querySelector('#my-msg').value);
         e.preventDefault();
