@@ -35,6 +35,8 @@ document.addEventListener('DOMContentLoaded', function () {
     
     socket.on('room_list', function (roomsList) {
         // afficher room (array)
+        console.log('herre');
+        alert(roomsList.join(' '));
     });
     
     send.addEventListener('click', function (e) {
