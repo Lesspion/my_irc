@@ -3,7 +3,7 @@
     var DOM = {};
     
     DOM.addMessage = function(DOMMessage) {
-        document.querySelector('.scrollable').innerHTML = document.querySelector('.scrollable').innerHTML + DOMMessage; // TO-TEST
+        document.querySelector('.scrollable').innerHTML = document.querySelector('.scrollable').innerHTML + DOMMessage;
     };
     
     DOM.addChannel = function (DOMChannel) {

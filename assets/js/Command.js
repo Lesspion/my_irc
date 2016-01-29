@@ -30,7 +30,6 @@
    
    Command.joinAction = function () {
        socket.emit('join_the_dark_side', Command.matches[1]);
-       // (switch de vue);
        DOMHistory.setMessages(user.getViewRoom(), [].slice.call(document.querySelectorAll('*[data-room="' + user.getViewRoom() + '"]')));
        user.setViewRoom(Command.matches[1]);
        user.allRoom.push(Command.matches[1]);

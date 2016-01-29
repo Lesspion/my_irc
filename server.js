@@ -34,13 +34,9 @@ io.sockets.on('connection', function (socket) {
     socket.emit('my_name_is', socket.nickname);
     
     socket.on('join_the_dark_side', function (channelName) { //join a room
-        //if (!Channel.checkIfAlreadyJoin(channels, socket.nickname, channelName)) {
-            channels[socket.nickname].push(channelName);
-            socket.join(channelName);
-            socket.curRoom = channelName;
-        //} else {
-            // change current channel
-        //}
+        channels[socket.nickname].push(channelName);
+        socket.join(channelName);
+        socket.curRoom = channelName;
     });
     
     socket.on('justin_leave_r', function (channelName) { // leave a room
@@ -59,7 +55,6 @@ io.sockets.on('connection', function (socket) {
         }
     */
     socket.on('message_is_coming', function (objectMsg) { // new message
-        console.log('i listen you : ', objectMsg);
          io.sockets.in(objectMsg.room).emit('listen_me', objectMsg);
     });
     
@@ -70,23 +65,19 @@ io.sockets.on('connection', function (socket) {
     
     socket.on('it_s_over_9000', function () {
         socket.emit('room_list', channels[socket.nickname]);
-        console.log('arg');
     });
     
     socket.on('how_many', function () {
         var cur = socket.curRoom;
         var u = [];
-        console.log(channels);
         for (var user in channels) {
             for (var i = 0; i < channels[user].length; i++) {
                 if (channels[user][i] === cur) {
-                    console.log('boulou : ', channels[user][i]);
                     u.push(user);
                 }
             }
         }
         socket.emit('we_are', u);
-        console.log('users : ', u);
     });
     
     // socket pour /users && function parse channels poiur recup user
