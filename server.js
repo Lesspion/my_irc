@@ -68,8 +68,11 @@ io.sockets.on('connection', function (socket) {
     });
     
     socket.on('it_s_over_9000', function () {
-        socket.emit('room_list', channelsList);
+        socket.emit('room_list', channels[socket.nickname]);
+        console.log('arg');
     });
+    
+    // socket pour /users && function parse channels poiur recup user
 });
 
 server.listen(1664);
