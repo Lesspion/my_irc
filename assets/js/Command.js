@@ -38,12 +38,16 @@
            console.log('JE suis la : ');
            console.log(DOMHistory.allMessages[Command.matches[1]]);
            var scrollable = document.querySelector('.scrollable');
-           scrollable.parentNode.replaceChild(scrollable, DOMHistory.getMessages(Command.matches[1]));
+           var parent = scrollable.parentNode;
+           //scrollable.parentNode.removeChild(scrollable);
+           parent.insertBefore(DOMHistory.getMessages(Command.matches[1]), parent.firstChild);
+           //scrollable.parentNode.replaceChild(scrollable, DOMHistory.getMessages(Command.matches[1]));
+           scrollable.innerHTML = "";
        }
    };
    
    Command.listAction = function () {
-       socket.emit('it_s_just_over_9000');
+       socket.emit('it_s_over_9000');
    };
    
    Command.meAction = function (action) {
@@ -51,7 +55,7 @@
    };
    
    Command.leaveAction = function () {
-       socket.emit('justin_leave_r', Command.matches[1]);
+       socket.emit('justin_leave_r', user.getViewRoom());
    };
    
    Command.userAction = function () {
